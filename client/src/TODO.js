@@ -1,9 +1,22 @@
 import {useState, useEffect} from "react"
 import List from "./List"
+
+const getLocalStorage = () => {
+    const list = localStorage.getItem('list');
+  
+    if (list) {
+        const listOne = JSON.parse(list)
+      return (listOne) // Parse the stored value to an object
+    } else {
+      return [];
+    }
+  };
 const TODO = ()=>{
+    
+
     const [name, setName] = useState('')
     const [isEditing, setEditing] = useState(false)
-    const [list, setList] = useState([])
+    const [list, setList] = useState(getLocalStorage())
     const [editId, setEditId] = useState(null)
 
     const handleSubmit = (e)=>{
@@ -53,7 +66,9 @@ const TODO = ()=>{
         setName(ExisitingItem.title)
 
     }
-    
+    useEffect (()=> {
+        localStorage.setItem('list', JSON.stringify(list))
+    }, [list])
     return (
         <section className="bg-[#F1F5F1] shadow-md rounded-lg  w-[40%] flex flex-col gap-8 p-8">
           <h1 className="font-serif text-center text-2xl">To Do List</h1>
