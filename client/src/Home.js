@@ -5,6 +5,17 @@ import DOING from "./DOING";
 import {DragDropContext} from "react-beautiful-dnd"
 
 const Home = ()=>{
+    //this is for the done 
+    const getLocalStorageDone = () => {
+        const list = localStorage.getItem('done');
+      
+        if (list) {
+            const listOne = JSON.parse(list)
+          return (listOne) // Parse the stored value to an object
+        } else {
+          return [];
+        }
+      };
 
     const getLocalStorageDoing = () => {
         const list = localStorage.getItem('doing');
@@ -56,11 +67,21 @@ const Home = ()=>{
         reorderdStores.splice(destinationONE, 0, removedStore)
         return setListDoing(reorderdStores);
       }
+      if(type == "groupTwo"){
+        const reorderdStores = [...listdone]
+        const sourceIndexONE = source.index;
+        const destinationONE = destination.index
+       
+        const [removedStore] = reorderdStores.splice(sourceIndexONE, 1)
+        reorderdStores.splice(destinationONE, 0, removedStore)
+        return setListDone(reorderdStores);
+      }
       }
     
 
       const [list, setList] = useState(getLocalStorage())
       const [listdoing, setListDoing] = useState(getLocalStorageDoing())
+      const [listdone, setListDone] = useState(getLocalStorageDone())
     return (
         <div className=" flex gap-4 justify-between  pl-8 pr-8 pt-[100px]">
             <DragDropContext
@@ -68,7 +89,7 @@ const Home = ()=>{
             >
             <TODO list={list} setList={setList}/>
             <DOING list={listdoing} setList={setListDoing}/>
-            <Done/>  
+            <Done list={listdone} setList={setListDone}/>  
             </DragDropContext>
                      
         </div>

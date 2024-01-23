@@ -1,22 +1,11 @@
 import {useState, useEffect} from "react"
 import List from "./Donelist"
 
-const getLocalStorage = () => {
-    const list = localStorage.getItem('done');
-  
-    if (list) {
-        const listOne = JSON.parse(list)
-      return (listOne) // Parse the stored value to an object
-    } else {
-      return [];
-    }
-  };
-const TODO = ()=>{
+const TODO = ({list, setList})=>{
     
 
     const [name, setName] = useState('')
     const [isEditing, setEditing] = useState(false)
-    const [list, setList] = useState(getLocalStorage())
     const [editId, setEditId] = useState(null)
 
     const handleSubmit = (e)=>{

@@ -4,7 +4,6 @@ import List from "./Doinglist"
 
 const TODO = ({list, setList})=>{
     
-
     const [name, setName] = useState('')
     const [isEditing, setEditing] = useState(false)
    
