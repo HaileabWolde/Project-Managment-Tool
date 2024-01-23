@@ -1,0 +1,12 @@
+.draggable-item {
+    cursor: grab;
+  }
+  
+  .draggable-item:active {
+    cursor: grabbing;
+  }
+  
+  .droppable-container {
+    min-height: 100px; /* Set a minimum height to the container */
+    border: 1px solid #ccc; /* Optional: Add a border to visualize the container */
+  }
