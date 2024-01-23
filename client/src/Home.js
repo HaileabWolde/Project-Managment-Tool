@@ -6,8 +6,9 @@ const Home = ()=>{
     return (
         <div className=" flex gap-4 justify-between  pl-8 pr-8 pt-[100px]">
             <TODO/>
-            <Done/>
             <DOING/>
+            <Done/>
+            
         </div>
     )
 
